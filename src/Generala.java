@@ -71,8 +71,7 @@ public class Generala {
             if(dado.intValue() < menor)
                 menor = dado.intValue();
 
-        System.out.println();
-        System.out.println(menor);
+
         int index = menor-1;
         for(int i = 0 ; i<5 ; i++ ){
             if(tablaRecurrencia.get(index).intValue()!=1)
