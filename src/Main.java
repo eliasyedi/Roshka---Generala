@@ -1,5 +1,19 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        ArrayList<Integer> dados = getRandom();
+        for(Integer dado : dados)
+            System.out.print(dado + "  ");
+        System.out.println(Generala.jugada(dados));
+    }
+
+
+    static public ArrayList<Integer> getRandom(){
+        ArrayList <Integer> dados = new ArrayList<Integer>(5);
+        for(int i = 0 ; i<5 ; i++)
+            dados.add(i , (int)(Math.random()*5+1));
+
+        return dados;
     }
 }

@@ -6,10 +6,10 @@ import java.util.ArrayList;
 public class Generala {
     static private ArrayList<Integer> tablaRecurrencia = new ArrayList<Integer>(6);
 
-    public String jugada(ArrayList<Integer> dados){
+    public static String jugada(ArrayList<Integer> dados){
 
         if(dados.size() != 5)
-            return "invalido"
+            return "invalido";
 
         generateTable(dados);
 
@@ -27,19 +27,20 @@ public class Generala {
 
     static private void generateTable(ArrayList<Integer> dados){
         for(int i = 0 ; i<6 ;i++)
-            tablaRecurrencia.add(i, 0);
+            tablaRecurrencia.add(0);
 
-        for(Integer dado : dados)
+        for(int dado = 1 ; dado<6 ; dado++)
             for(Integer recurrencia: dados)
-                if(dado.compareTo(recurrencia) == 0)
-                    tablaRecurrencia.add(tablaRecurrencia.get(dado-1)+1);
+                if(dado == recurrencia.intValue())
+                    tablaRecurrencia.set(dado-1,tablaRecurrencia.get(dado-1)+1);
+
     }
     static private boolean generala(){
         for(Integer recurrencia: tablaRecurrencia)
             if(recurrencia == 5)
                 return true;
 
-        return false
+        return false;
     }
 
 
@@ -51,19 +52,16 @@ public class Generala {
         return false;
     }
     static private boolean full(){
-        Integer recurrencia1 = null;
-        Integer recurrencia2 = null;
-        for(int i = 0 ; i<6 ; i++){
-            recurrencia1 = tablaRecurrencia.get(i);
-            for(int j = 0 ; j<6 ; j++){
-                recurrencia2 = tablaRecurrencia.get(j);
-                if(!recurrencia1.equals(recurrencia2)){
-                    if((recurrencia1 == 3 && recurrencia2 ==2) || (recurrencia1 == 2 && recurrencia2 ==3))
+       // Integer recurrencia1 = null;//Integer recurrencia2 = null;
+
+        for(Integer recurrencia1 : tablaRecurrencia )
+            if(recurrencia1 == 3 )
+                for(Integer recurrencia2: tablaRecurrencia)
+                    if(recurrencia2 == 2)
                         return true;
-                }
-            }
-        }
+
         return false;
+
     }
 
 
@@ -73,10 +71,14 @@ public class Generala {
             if(dado.intValue() < menor)
                 menor = dado.intValue();
 
+        System.out.println();
+        System.out.println(menor);
         int index = menor-1;
-        for(int i = 0 ; i<5 ; i++ )
-            if(tablaRecurrencia.get(index+1)!=1)
+        for(int i = 0 ; i<5 ; i++ ){
+            if(tablaRecurrencia.get(index).intValue()!=1)
                 return false;
+            index++;
+        }
 
         return true;
     }
