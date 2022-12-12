@@ -19,7 +19,7 @@ public class Generala {
             return "POKER";
         if(full())
             return "FULL";
-        if(escalera(dados))
+        if(escalera())
             return "ESCALERA";
 
         return "NADA";
@@ -29,10 +29,13 @@ public class Generala {
         for(int i = 0 ; i<6 ;i++)
             tablaRecurrencia.add(0);
 
-        for(int dado = 1 ; dado<6 ; dado++)
+        for(int dado = 1 ; dado<7 ; dado++)
             for(Integer recurrencia: dados)
                 if(dado == recurrencia.intValue())
                     tablaRecurrencia.set(dado-1,tablaRecurrencia.get(dado-1)+1);
+        System.out.println();
+        for(Integer recurrencia: tablaRecurrencia)
+            System.out.print(recurrencia + "  ");
 
     }
     static private boolean generala(){
@@ -65,21 +68,25 @@ public class Generala {
     }
 
 
-    static private boolean escalera(ArrayList<Integer> dados){
-        int menor = dados.get(0).intValue();
-        for(Integer dado: dados)
-            if(dado.intValue() < menor)
-                menor = dado.intValue();
+    static private boolean escalera(){
+        boolean isStraight = false;
+        if(tablaRecurrencia.get(0).intValue() == 1 ){
+            for(int i = 1 ; i<5 ; i++)
+                if(tablaRecurrencia.get(i).intValue() != 1)
+                    isStraight = false;
 
-
-        int index = menor-1;
-        for(int i = 0 ; i<5 ; i++ ){
-            if(tablaRecurrencia.get(index).intValue()!=1)
-                return false;
-            index++;
+            for(int i = 2 ; i<6 ; i++)
+                if(tablaRecurrencia.get(i).intValue() != 1)
+                    isStraight = true;
+            return isStraight;
         }
-
+        for(int i = 1 ; i<6 ; i++)
+            if(tablaRecurrencia.get(i).intValue() !=1)
+                return false;
         return true;
+
+
+
     }
 
 
