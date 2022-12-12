@@ -34,8 +34,7 @@ public class Generala {
                 if(dado == recurrencia.intValue())
                     tablaRecurrencia.set(dado-1,tablaRecurrencia.get(dado-1)+1);
         System.out.println();
-        for(Integer recurrencia: tablaRecurrencia)
-            System.out.print(recurrencia + "  ");
+        System.out.print("tabla de recurrencia: " + tablaRecurrencia);
 
     }
     static private boolean generala(){

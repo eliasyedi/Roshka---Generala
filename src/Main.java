@@ -4,9 +4,8 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Integer> dados = getRandom();
 
+        System.out.print("dados: " + dados);
 
-        for(Integer dado : dados)
-            System.out.print(dado + "  ");
         System.out.println(Generala.jugada(dados));
     }
 
@@ -18,4 +17,7 @@ public class Main {
 
         return dados;
     }
+
+
+
 }
